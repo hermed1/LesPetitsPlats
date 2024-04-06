@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les petits plats</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/03e4bd3b07.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header class="header">
+      <img src="/Assets/Logo.png" alt="" />
+      <div class="container h-100 d-flex justify-content-center flex-column">
+        <div class="row justify-content-center my-3">
+          <div class="col-9">
+            <h1 class="text-warning fw-bold">
+              CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET
+              DÉLICIEUSES
+            </h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-container col">
+            <input
+              class="search-input search w-100"
+              placeholder="Rechercher une recette, un ingrédient, ..."
+            />
+            <p class="error-message"></p>
+            <button class="search-btn">
+              <i class="search-icon fa-solid fa-xl fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="row">
+        <div class="col-3"></div>
+      </div>
+      <div class="filters-and-total-container">
+        <div class="filters-container">
+          <div class="ingredients-filters-container">
+            <!-- <button class="filters-dropdown-btn" type="button">
+              Ingrédients
+              <i class="fa-solid fa-chevron-down"></i>
+            </button> -->
+            <ul class="ingredients-list filters-dropdown-btn">
+              Ingrédients
+              <i class="fa-solid fa-chevron-down"></i>
+            </ul>
+          </div>
+          <div class="appliances-filters-container">
+            <button class="filters-dropdown-btn" type="button">
+              Appareils
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <ul class="appliances-list"></ul>
+          </div>
+          <div class="ustensils-filters-container">
+            <button class="filters-dropdown-btn" type="button">
+              Ustensiles
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <ul class="ustensils-list"></ul>
+          </div>
+        </div>
+        <p class="total-recipes"></p>
+      </div>
+      <div class="tags-container"></div>
+      <div class="recipes-container"></div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module" src="recipes.js"></script>
+    <script type="module" src="/scripts/index.js"></script>
+    <script type="module" src="/scripts/builders/cardTemplate.js"></script>
+    <script></script>
+  </body>
+</html>

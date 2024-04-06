@@ -1,0 +1,123 @@
+/* yellow = background: #FFD15B; */
+
+main {
+  background-color: rgb(237, 237, 237);
+}
+
+.header {
+  background-image: url(/Assets/Mask\ group.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+}
+.input-container {
+  position: relative;
+}
+.search-btn {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
+  background-color: black;
+}
+
+.search-icon {
+  color: white;
+}
+
+.search-input {
+  height: 80px;
+  border-radius: 10px;
+  padding-left: 20px;
+}
+
+.text-warning {
+  font-size: 38px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.recipes-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 15%;
+}
+
+/* styles des cards */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 26%;
+  border-radius: 15px;
+  height: 800px;
+  margin-bottom: 100px;
+}
+.card-image {
+  height: 34%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.recipe-title,
+.ingredients-title {
+  color: grey;
+  font-weight: 600;
+  font-size: 20px;
+}
+.ingredient-name {
+  font-weight: 500;
+}
+.recipe-time {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  border-radius: 45px;
+  padding: 10px 20px;
+}
+
+/* Style des menus déroulants des filtres */
+.filters-dropdown-btn {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 15px;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  background-color: white;
+  border-radius: 11px;
+  font-size: 16px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters-and-total-container {
+  border: red solid;
+  display: flex;
+  padding: 50px 15%;
+  justify-content: space-between;
+}
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.total-recipes {
+  font-weight: bold;
+  font-size: 21px;
+}
+
+/* test */
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+}
