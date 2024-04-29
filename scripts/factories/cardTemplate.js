@@ -10,7 +10,7 @@ export function cardTemplate(recipe) {
     cardImage.setAttribute('src', imgSrc);
 
     const recipeTime = document.createElement('p');
-    recipeTime.classList.add('recipe-time', 'bg-warning');
+    recipeTime.classList.add('recipe-time');
     recipeTime.textContent = `${time}min`;
 
     const recipeName = document.createElement('h2');

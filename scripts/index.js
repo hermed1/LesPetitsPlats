@@ -96,11 +96,25 @@ function displayRecipes() {
   }
 }
 
+// function displayIngredientsList(ingredientsList) {
+//   const ingredientsListElement = document.querySelector('.ingredients-list');
+//   if (ingredientsListElement) {
+//     ingredientsListElement.innerHTML = '';
+//     ingredientsListElement.textContent = 'Ingrédients';
+//     const searchInput = document.createElement('input');
+//     searchInput.setAttribute('type', 'text');
+//     ingredientsListElement.appendChild(searchInput);
+//     ingredientsList.forEach((ingredient) => {
+//       const filterModel = filterTemplate(ingredient);
+//       const ingredientItem = filterModel.createFilter();
+//       ingredientsListElement.appendChild(ingredientItem);
+//     });
+//   }
+// }
 function displayIngredientsList(ingredientsList) {
   const ingredientsListElement = document.querySelector('.ingredients-list');
   if (ingredientsListElement) {
     ingredientsListElement.innerHTML = '';
-    ingredientsListElement.textContent = 'Ingrédients';
     ingredientsList.forEach((ingredient) => {
       const filterModel = filterTemplate(ingredient);
       const ingredientItem = filterModel.createFilter();
@@ -150,10 +164,80 @@ function displayTotalrecipes() {
 }
 displayTotalrecipes();
 
-function toggleDropdown() {
-  const buttons = document.querySelectorAll('.filters-dropdown-btn');
+// function toggleDropdown() {
+//   const buttons = document.querySelectorAll('.filter-dropdown-btn');
+//   buttons.forEach((button) => {
+//     button.addEventListener('click', () => {
+//       const icon = button.querySelector('i.fa-solid');
+//       if (icon.classList.contains('fa-chevron-down')) {
+//         icon.classList.remove('fa-chevron-down');
+//         icon.classList.add('fa-chevron-up');
+//       } else {
+//         icon.classList.remove('fa-chevron-up');
+//         icon.classList.add('fa-chevron-down');
+//       }
+//     });
+//   });
+// }
+
+// toggleDropdown();
+
+// function toggleFiltersList() {
+//   const buttons = document.querySelectorAll('.filter-dropdown-btn');
+//   buttons.forEach((button) => {
+//     button.addEventListener('click', () => {
+//       const list = button.nextElementSibling;
+//       if (list) {
+//         list.style.display = list.style.display === 'flex' ? 'none' : 'flex';
+//       }
+//     });
+//   });
+// }
+
+// toggleFiltersList();
+
+// function toggleFilters() {
+//   const buttons = document.querySelectorAll('.filter-dropdown-btn');
+//   buttons.forEach((button) => {
+//     button.addEventListener('click', () => {
+//       const list = button.nextElementSibling;
+//       console.log(list);
+//       //   if (list) {
+//       //     list.style.display = list.style.display === 'flex' ? 'none' : 'flex';
+//       //   }
+//       if (list) {
+//         if (list.classList.contains('filter-inactive')) {
+//           list.classList.remove('filter-inactive');
+//           list.classList.add('filter-active');
+//           console.log('inactive');
+//         } else {
+//           list.classList.remove('filter-active');
+//           list.classList.add('filter-inactive');
+//           console.log('active');
+//         }
+//       } else {
+//         console.log('no list');
+//       }
+//       const icon = button.querySelector('i.fa-solid');
+//       if (icon.classList.contains('fa-chevron-down')) {
+//         icon.classList.remove('fa-chevron-down');
+//         icon.classList.add('fa-chevron-up');
+//       } else {
+//         icon.classList.remove('fa-chevron-up');
+//         icon.classList.add('fa-chevron-down');
+//       }
+//     });
+//   });
+// }
+
+function toggleFilters() {
+  const buttons = document.querySelectorAll('.filter-dropdown-btn');
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
+      const list = button.nextElementSibling;
+      if (list) {
+        list.style.display = list.style.display === 'flex' ? 'none' : 'flex';
+      }
       const icon = button.querySelector('i.fa-solid');
       if (icon.classList.contains('fa-chevron-down')) {
         icon.classList.remove('fa-chevron-down');
@@ -166,4 +250,4 @@ function toggleDropdown() {
   });
 }
 
-toggleDropdown();
+toggleFilters();

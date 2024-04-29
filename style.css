@@ -11,6 +11,9 @@ main {
   background-repeat: no-repeat;
   height: 80vh;
 }
+.h1 {
+  color: #ffd15b;
+}
 .input-container {
   position: relative;
 }
@@ -61,6 +64,8 @@ main {
   height: 34%;
   width: 100%;
   object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .recipe-title,
@@ -68,6 +73,13 @@ main {
   color: grey;
   font-weight: 600;
   font-size: 20px;
+}
+.recipe-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .ingredient-name {
   font-weight: 500;
@@ -78,14 +90,15 @@ main {
   right: 25px;
   border-radius: 45px;
   padding: 10px 20px;
+  background-color: #ffd15b;
 }
 
 /* Style des menus déroulants des filtres */
-.filters-dropdown-btn {
+
+.filter-dropdown-btn {
   background: none;
   color: inherit;
   border: none;
-  padding: 15px;
   margin: 0;
   font: inherit;
   cursor: pointer;
@@ -95,12 +108,22 @@ main {
   font-size: 16px;
   width: 200px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  height: 45px;
+  padding: 0 15px;
+  position: relative;
 }
-
+.filter-dropdown-btn:focus {
+  outline: none;
+}
+.filter-arrow {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
 .filters-and-total-container {
-  border: red solid;
   display: flex;
   padding: 50px 15%;
   justify-content: space-between;
@@ -108,7 +131,6 @@ main {
 .filters-container {
   display: flex;
   justify-content: space-between;
-  width: 50%;
 }
 
 .total-recipes {
@@ -117,7 +139,55 @@ main {
 }
 
 /* test */
-.ingredients-list {
+.list-container {
   display: flex;
   flex-direction: column;
+}
+.filters-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: 20px;
+}
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 11px;
+  background-color: white;
+  margin-right: 50px;
+  height: fit-content;
+}
+ul {
+  list-style-type: none;
+}
+.filter-search-input-container {
+  padding: 0 15px;
+  position: relative;
+  width: calc(100% - 30px);
+  border: yellow solid;
+}
+
+.filter-item {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  padding: 3px 15px;
+}
+.filter-item:hover {
+  background-color: #ffd15b;
+}
+.filter-active {
+  display: flex;
+}
+.filter-inactive {
+  display: none;
+}
+.filter-glass {
+  position: absolute;
+  right: 25px;
+  top: 12px;
+  color: rgb(207, 204, 204);
+}
+.filter-search-input {
+  height: 38px;
 }

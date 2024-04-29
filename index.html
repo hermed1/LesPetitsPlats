@@ -20,7 +20,7 @@
       <div class="container h-100 d-flex justify-content-center flex-column">
         <div class="row justify-content-center my-3">
           <div class="col-9">
-            <h1 class="text-warning fw-bold">
+            <h1 class="fw-bold h1">
               CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET
               DÉLICIEUSES
             </h1>
@@ -47,29 +47,59 @@
       </div>
       <div class="filters-and-total-container">
         <div class="filters-container">
-          <div class="ingredients-filters-container">
-            <!-- <button class="filters-dropdown-btn" type="button">
+          <div class="ingredients-filters-container filter-container">
+            <button class="filter-dropdown-btn" type="button">
               Ingrédients
-              <i class="fa-solid fa-chevron-down"></i>
-            </button> -->
-            <ul class="ingredients-list filters-dropdown-btn">
-              Ingrédients
-              <i class="fa-solid fa-chevron-down"></i>
-            </ul>
+              <i class="fa-solid fa-chevron-down filter-arrow"></i>
+            </button>
+            <div
+              class="ingredients-list-container list-container filter-inactive"
+            >
+              <div class="filter-search-input-container">
+                <input
+                  type="text"
+                  class="ingredients-search-input filter-search-input"
+                />
+                <i class="fa-solid fa-magnifying-glass filter-glass"></i>
+              </div>
+              <ul class="ingredients-list filters-list"></ul>
+            </div>
           </div>
-          <div class="appliances-filters-container">
-            <button class="filters-dropdown-btn" type="button">
+          <div class="appliances-filters-container filter-container">
+            <button class="filter-dropdown-btn" type="button">
               Appareils
-              <i class="fa-solid fa-chevron-down"></i>
+              <i class="fa-solid fa-chevron-down filter-arrow"></i>
             </button>
-            <ul class="appliances-list"></ul>
+            <div
+              class="appliances-list-container list-container filter-inactive"
+            >
+              <div class="filter-search-input-container">
+                <input
+                  type="text"
+                  class="appliances-search-input filter-search-input"
+                />
+                <i class="fa-solid fa-magnifying-glass filter-glass"></i>
+              </div>
+              <ul class="appliances-list filters-list"></ul>
+            </div>
           </div>
-          <div class="ustensils-filters-container">
-            <button class="filters-dropdown-btn" type="button">
+          <div class="ustensils-filters-container filter-container">
+            <button class="filter-dropdown-btn" type="button">
               Ustensiles
-              <i class="fa-solid fa-chevron-down"></i>
+              <i class="fa-solid fa-chevron-down filter-arrow"></i>
             </button>
-            <ul class="ustensils-list"></ul>
+            <div
+              class="ustensils-list-container list-container filter-inactive"
+            >
+              <div class="filter-search-input-container">
+                <input
+                  type="text"
+                  class="ustensils-search-input filter-search-input"
+                />
+                <i class="fa-solid fa-magnifying-glass filter-glass"></i>
+              </div>
+              <ul class="ustensils-list filters-list"></ul>
+            </div>
           </div>
         </div>
         <p class="total-recipes"></p>
