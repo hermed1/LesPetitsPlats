@@ -21,15 +21,15 @@ function searchRecipes() {
     errorMessage.textContent = '';
 
     recipes.forEach((recipe) => {
-      if (recipe.name.includes(inputValue)) {
+      if (recipe.name.includes(inputValue.toLowerCase())) {
         matchingRecipesSet.add(recipe);
       } else if (
         recipe.ingredients.some((ingredient) =>
-          ingredient.ingredient.includes(inputValue)
+          ingredient.ingredient.includes(inputValue.toLowerCase())
         )
       ) {
         matchingRecipesSet.add(recipe);
-      } else if (recipe.description.includes(inputValue)) {
+      } else if (recipe.description.includes(inputValue.toLowerCase())) {
         matchingRecipesSet.add(recipe);
       }
     });
@@ -40,6 +40,7 @@ function searchRecipes() {
       errorMessage.style.color = 'red';
     }
   } else {
+    matchingRecipesSet.clear();
     errorMessage.textContent = 'Veuillez entrer au moins 3 caractères';
     errorMessage.style.color = 'red';
   }
@@ -51,6 +52,7 @@ function searchRecipes() {
   displayUstensilsList(ustensilsList);
   displayAppliancesList(appliancesList);
   displayTotalrecipes();
+  console.log('search recipes');
   return matchingRecipes; // Retourne un tableau
 }
 

@@ -10,9 +10,14 @@ main {
   background-position: center;
   background-repeat: no-repeat;
   height: 80vh;
+  padding: 40px;
 }
 .h1 {
   color: #ffd15b;
+  font-family: 'Anton';
+  font-size: 44px;
+  line-height: 66.24px;
+  text-align: center;
 }
 .input-container {
   position: relative;
@@ -47,7 +52,11 @@ main {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 0 15%;
+  padding: 0 10%;
+}
+
+.recipe-name {
+  font-size: 20px;
 }
 
 /* styles des cards */
@@ -55,10 +64,11 @@ main {
 .card {
   display: flex;
   flex-direction: column;
-  width: 26%;
+  width: 27%;
   border-radius: 15px;
-  height: 800px;
   margin-bottom: 100px;
+  padding-bottom: 10px;
+  max-height: 850px;
 }
 .card-image {
   height: 34%;
@@ -114,6 +124,7 @@ main {
   height: 45px;
   padding: 0 15px;
   position: relative;
+  width: 100%;
 }
 .filter-dropdown-btn:focus {
   outline: none;
@@ -125,12 +136,16 @@ main {
 }
 .filters-and-total-container {
   display: flex;
-  padding: 50px 15%;
+  padding: 0 10%;
+  padding-top: 20px;
+  padding-bottom: 50px;
   justify-content: space-between;
 }
 .filters-container {
   display: flex;
   justify-content: space-between;
+
+  width: 50%;
 }
 
 .total-recipes {
@@ -154,8 +169,8 @@ main {
   flex-direction: column;
   border-radius: 11px;
   background-color: white;
-  margin-right: 50px;
   height: fit-content;
+  width: 28%;
 }
 ul {
   list-style-type: none;
@@ -163,8 +178,7 @@ ul {
 .filter-search-input-container {
   padding: 0 15px;
   position: relative;
-  width: calc(100% - 30px);
-  border: yellow solid;
+  width: 100%;
 }
 
 .filter-item {
@@ -190,4 +204,5 @@ ul {
 }
 .filter-search-input {
   height: 38px;
+  width: 100%;
 }

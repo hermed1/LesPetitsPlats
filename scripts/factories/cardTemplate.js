@@ -33,7 +33,7 @@ export function cardTemplate(recipe) {
     ingredientsContainer.classList.add('ingredients-container', 'row');
 
     const cardTextContent = document.createElement('div');
-    cardTextContent.classList.add('card-text-content', 'px-5');
+    cardTextContent.classList.add('card-text-content', 'px-4');
     cardTextContent.append(
       recipeName,
       recipeTime,
