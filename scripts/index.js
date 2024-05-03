@@ -2,11 +2,14 @@ import { recipes } from '/recipes.js';
 import { cardTemplate } from './factories/cardTemplate.js';
 import { filterTemplate } from './factories/listItem.js';
 
-let matchingRecipesSet = new Set(); // Utilise un Set pour éviter les doublons
+let matchingRecipesSet = new Set();
 let matchingRecipes = [];
 let ingredientsList = [];
+let ingredientsListCopy = [];
 let appliancesList = [];
+let appliancesListCopy = [];
 let ustensilsList = [];
+let ustensilsListCopy = [];
 
 //tester has pour le set
 
@@ -52,7 +55,6 @@ function searchRecipes() {
   displayUstensilsList(ustensilsList);
   displayAppliancesList(appliancesList);
   displayTotalrecipes();
-  console.log('search recipes');
   return matchingRecipes; // Retourne un tableau
 }
 
@@ -68,17 +70,20 @@ function getIngredientsUtensilsAppliancesLists(matchingRecipes) {
   if (Array.isArray(matchingRecipes)) {
     matchingRecipes.forEach((recipe) => {
       recipe.ingredients.forEach((ingredient) => {
-        ingredientsSet.add(ingredient.ingredient);
+        ingredientsSet.add(ingredient.ingredient.toLowerCase());
       });
-      appliancesSet.add(recipe.appliance);
+      appliancesSet.add(recipe.appliance.toLowerCase());
       recipe.ustensils.forEach((ustensil) => {
-        ustensilsSet.add(ustensil);
+        ustensilsSet.add(ustensil.toLowerCase());
       });
     });
   }
   ingredientsList = [...ingredientsSet];
+  ingredientsListCopy = [...ingredientsList];
   appliancesList = [...appliancesSet];
+  appliancesListCopy = [...appliancesList];
   ustensilsList = [...ustensilsSet];
+  ustensilsListCopy = [...ustensilsList];
   return {
     ingredientsList,
     appliancesList,
@@ -253,3 +258,57 @@ function toggleFilters() {
 }
 
 toggleFilters();
+
+// filters inputs functions
+function handleIngredientsFilterSearch() {
+  ingredientsListCopy = [...ingredientsList];
+  const input = document.querySelector('.ingredients-search-input');
+  const inputValue = input.value.toLowerCase();
+  console.log('ingredients list copy', ingredientsListCopy);
+  ingredientsListCopy = ingredientsList.filter((ingredient) =>
+    ingredient.toLowerCase().includes(inputValue)
+  );
+  console.log('ingredients list filtrée', ingredientsListCopy);
+
+  displayIngredientsList(ingredientsListCopy);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const inputElement = document.querySelector('.ingredients-search-input');
+  if (inputElement) {
+    inputElement.addEventListener('input', handleIngredientsFilterSearch);
+  }
+});
+
+function handleUstensilsFilterSearch() {
+  ustensilsListCopy = [...ustensilsList];
+  const input = document.querySelector('.ustensils-search-input');
+  const inputValue = input.value.toLowerCase();
+  ustensilsListCopy = ustensilsList.filter((ustensil) =>
+    ustensil.toLowerCase().includes(inputValue)
+  );
+  displayUstensilsList(ustensilsListCopy);
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const inputElement = document.querySelector('.ustensils-search-input');
+  if (inputElement) {
+    inputElement.addEventListener('input', handleUstensilsFilterSearch);
+  }
+});
+
+function handleAppliancesFilterSearch() {
+  appliancesListCopy = [...appliancesList];
+  const input = document.querySelector('.appliances-search-input');
+  const inputValue = input.value.toLowerCase();
+  appliancesListCopy = appliancesList.filter((appliance) =>
+    appliance.toLowerCase().includes(inputValue)
+  );
+  displayAppliancesList(appliancesListCopy);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const inputElement = document.querySelector('.appliances-search-input');
+  if (inputElement) {
+    inputElement.addEventListener('input', handleAppliancesFilterSearch);
+  }
+});
