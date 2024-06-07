@@ -69,9 +69,10 @@ main {
   margin-bottom: 100px;
   padding-bottom: 10px;
   max-height: 850px;
+  padding-bottom: 50px;
 }
 .card-image {
-  height: 34%;
+  min-height: 34%;
   width: 100%;
   object-fit: cover;
   border-top-left-radius: 15px;
@@ -121,8 +122,8 @@ main {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 45px;
-  padding: 0 15px;
+  /* height: 45px; */
+  padding: 18px;
   position: relative;
   width: 100%;
 }
@@ -131,8 +132,8 @@ main {
 }
 .filter-arrow {
   position: absolute;
-  top: 15px;
-  right: 10px;
+  /* top: 15px; */
+  right: 15px;
 }
 .filters-and-total-container {
   display: flex;
@@ -156,7 +157,12 @@ main {
 /* test */
 .list-container {
   display: flex;
+  background-color: white;
+  position: absolute;
+  z-index: 5;
+  top: 45px;
   flex-direction: column;
+  width: 100%;
 }
 .filters-list {
   display: flex;
@@ -168,9 +174,9 @@ main {
   display: flex;
   flex-direction: column;
   border-radius: 11px;
-  background-color: white;
   height: fit-content;
   width: 28%;
+  position: relative;
 }
 ul {
   list-style-type: none;
@@ -206,3 +212,37 @@ ul {
   height: 38px;
   width: 100%;
 }
+
+/* style des tags  */
+.tag {
+  background-color: #ffd15b;
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.filter-search-input-container {
+  margin-bottom: 20px;
+}
+.selected-tag {
+  background-color: #ffd15b;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+.fa-xmark {
+  cursor: pointer;
+}
+.fa-xmark:hover ~ .tag-icon-container {
+  color: #ffd15b;
+}
+.tag-icon-container {
+  border-radius: 15px;
+  padding: 0 5px;
+}
+/* .tag-icon-container:hover {
+  background-color: black;
+} */
