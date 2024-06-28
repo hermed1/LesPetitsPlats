@@ -35,39 +35,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function searchRecipes() {
   const mainInput = document.querySelector('.search-input');
-  const inputValue = mainInput.value;
+  const inputValue = mainInput.value.toLowerCase();
   const errorMessage = document.querySelector('.error-message');
   const errorMessageNoRecipes = document.querySelector(
     '.error-message-no-recipes'
   );
+
   if (inputValue.length > 2) {
     matchingRecipesSet.clear();
-    // matchingRecipes = [];
     errorMessage.textContent = '';
     errorMessageNoRecipes.textContent = '';
-    const tagsContainer = document.querySelectorAll('.tags-container');
-    tagsContainer.forEach((container) => {
-      container.innerHTML = '';
-    });
 
-    recipes.forEach((recipe) => {
-      if (recipe.name.includes(inputValue.toLowerCase())) {
-        matchingRecipesSet.add(recipe);
-      } else if (
-        recipe.ingredients.some((ingredient) =>
-          ingredient.ingredient.includes(inputValue.toLowerCase())
-        )
-      ) {
-        matchingRecipesSet.add(recipe);
-      } else if (recipe.description.includes(inputValue.toLowerCase())) {
-        matchingRecipesSet.add(recipe);
-      }
-    });
+    // Utiliser map pour vider les conteneurs de tags
+    Array.from(document.querySelectorAll('.tags-container')).map(
+      (container) => (container.innerHTML = '')
+    );
+
+    // Utiliser filter pour trouver les recettes correspondantes
+    matchingRecipesSet = new Set(
+      recipes.filter(
+        (recipe) =>
+          recipe.name.toLowerCase().includes(inputValue) ||
+          recipe.description.toLowerCase().includes(inputValue) ||
+          recipe.ingredients.some((ingredient) =>
+            ingredient.ingredient.toLowerCase().includes(inputValue)
+          )
+      )
+    );
 
     if (matchingRecipesSet.size === 0) {
       errorMessageNoRecipes.textContent = `Aucune recette ne contient ${inputValue}. Vous pouvez chercher «tarte aux pommes», «poisson», etc.`;
       errorMessageNoRecipes.style.cssText =
-        'color: red; margin-top: 10px; font-size: 1.2rem; ';
+        'color: red; margin-top: 10px; font-size: 1.2rem;';
     }
   } else {
     matchingRecipesSet.clear();
@@ -75,7 +74,7 @@ function searchRecipes() {
     errorMessage.style.color = 'red';
   }
 
-  matchingRecipes = [...matchingRecipesSet];
+  matchingRecipes = Array.from(matchingRecipesSet);
   matchingRecipesCopy = [...matchingRecipes];
   getIngredientsUtensilsAppliancesLists(matchingRecipes);
   displayRecipes(matchingRecipes);
@@ -95,22 +94,24 @@ function getIngredientsUtensilsAppliancesLists(matchingRecipes) {
   let ingredientsSet = new Set();
   let appliancesSet = new Set();
   let ustensilsSet = new Set();
+
   if (Array.isArray(matchingRecipes)) {
-    matchingRecipes.forEach((recipe) => {
-      recipe.ingredients.forEach((ingredient) => {
-        ingredientsSet.add(ingredient.ingredient.toLowerCase());
-      });
+    matchingRecipes.map((recipe) => {
+      recipe.ingredients.map((ingredient) =>
+        ingredientsSet.add(ingredient.ingredient.toLowerCase())
+      );
       appliancesSet.add(recipe.appliance.toLowerCase());
-      recipe.ustensils.forEach((ustensil) => {
-        ustensilsSet.add(ustensil.toLowerCase());
-      });
+      recipe.ustensils.map((ustensil) =>
+        ustensilsSet.add(ustensil.toLowerCase())
+      );
     });
   }
-  ingredientsList = [...ingredientsSet];
+
+  ingredientsList = Array.from(ingredientsSet);
   ingredientsListCopy = [...ingredientsList];
-  appliancesList = [...appliancesSet];
+  appliancesList = Array.from(appliancesSet);
   appliancesListCopy = [...appliancesList];
-  ustensilsList = [...ustensilsSet];
+  ustensilsList = Array.from(ustensilsSet);
   ustensilsListCopy = [...ustensilsList];
   return {
     ingredientsList,
@@ -118,6 +119,11 @@ function getIngredientsUtensilsAppliancesLists(matchingRecipes) {
     ustensilsList,
   };
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.querySelector('.search-input');
+  searchInput.addEventListener('input', searchRecipes);
+});
 
 function displayRecipes(recipes) {
   // if (recipes.length === 0) {
