@@ -53,7 +53,7 @@ export function cardTemplate(recipe) {
       const ingredientQuantity = document.createElement('p');
       ingredientQuantity.classList.add('ingredient-quantity', 'text-black-50');
       const unit = ingredient.unit ?? '';
-      ingredientQuantity.textContent = ingredient.quantity + unit;
+      ingredientQuantity.textContent = `${ingredient.quantity ?? ''} ${unit}`;
       //   ingredient.unit === 'grammes'
       //     ? (ingredientQuantity.textContent = `${ingredient.quantity}g`)
       //     : (ingredientQuantity.textContent = `${ingredient.quantity}${
