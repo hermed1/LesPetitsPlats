@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function searchRecipes() {
   const mainInput = document.querySelector('.search-input');
-  const inputValue = mainInput.value;
+  const inputValue = mainInput.value.toLowerCase();
   const errorMessage = document.querySelector('.error-message');
   const errorMessageNoRecipes = document.querySelector(
     '.error-message-no-recipes'
@@ -46,24 +46,22 @@ function searchRecipes() {
     errorMessage.textContent = '';
     errorMessageNoRecipes.textContent = '';
     const tagsContainer = document.querySelectorAll('.tags-container');
-    tagsContainer.forEach((container) => {
-      container.innerHTML = '';
-    });
-
-    recipes.forEach((recipe) => {
-      if (recipe.name.includes(inputValue.toLowerCase())) {
-        matchingRecipesSet.add(recipe);
+    for (let i = 0; i < tagsContainer.length; i++) {
+      tagsContainer[i].innerHTML = '';
+    }
+    for (let i = 0; i < recipes.length; i++) {
+      if (recipes[i].name.toLowerCase().includes(inputValue)) {
+        matchingRecipesSet.add(recipes[i]);
+      } else if (recipes[i].description.toLowerCase().includes(inputValue)) {
+        matchingRecipesSet.add(recipes[i]);
       } else if (
-        recipe.ingredients.some((ingredient) =>
-          ingredient.ingredient.includes(inputValue.toLowerCase())
+        recipes[i].ingredients.some((ingredient) =>
+          ingredient.ingredient.toLowerCase().includes(inputValue)
         )
       ) {
-        matchingRecipesSet.add(recipe);
-      } else if (recipe.description.includes(inputValue.toLowerCase())) {
-        matchingRecipesSet.add(recipe);
+        matchingRecipesSet.add(recipes[i]);
       }
-    });
-
+    }
     if (matchingRecipesSet.size === 0) {
       errorMessageNoRecipes.textContent = `Aucune recette ne contient ${inputValue}. Vous pouvez chercher «tarte aux pommes», «poisson», etc.`;
       errorMessageNoRecipes.style.cssText =
@@ -95,23 +93,32 @@ function getIngredientsUtensilsAppliancesLists(matchingRecipes) {
   let ingredientsSet = new Set();
   let appliancesSet = new Set();
   let ustensilsSet = new Set();
+
   if (Array.isArray(matchingRecipes)) {
-    matchingRecipes.forEach((recipe) => {
-      recipe.ingredients.forEach((ingredient) => {
-        ingredientsSet.add(ingredient.ingredient.toLowerCase());
-      });
+    for (let i = 0; i < matchingRecipes.length; i++) {
+      const recipe = matchingRecipes[i];
+
+      for (let j = 0; j < recipe.ingredients.length; j++) {
+        const ingredient = recipe.ingredients[j].ingredient.toLowerCase();
+        ingredientsSet.add(ingredient);
+      }
+
       appliancesSet.add(recipe.appliance.toLowerCase());
-      recipe.ustensils.forEach((ustensil) => {
-        ustensilsSet.add(ustensil.toLowerCase());
-      });
-    });
+
+      for (let k = 0; k < recipe.ustensils.length; k++) {
+        const ustensil = recipe.ustensils[k].toLowerCase();
+        ustensilsSet.add(ustensil);
+      }
+    }
   }
-  ingredientsList = [...ingredientsSet];
+
+  ingredientsList = Array.from(ingredientsSet);
   ingredientsListCopy = [...ingredientsList];
-  appliancesList = [...appliancesSet];
+  appliancesList = Array.from(appliancesSet);
   appliancesListCopy = [...appliancesList];
-  ustensilsList = [...ustensilsSet];
+  ustensilsList = Array.from(ustensilsSet);
   ustensilsListCopy = [...ustensilsList];
+
   return {
     ingredientsList,
     appliancesList,
