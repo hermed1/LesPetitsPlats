@@ -408,11 +408,8 @@ function handleUstentilsTags() {
           );
 
           // Re-filtrer les recettes en fonction de tous les tags restants
-          matchingRecipesCopy = matchingRecipes.filter((recipe) =>
-            selectedTags.ustensils.every((tag) =>
-              recipe.ustensils.includes(tag.toLowerCase())
-            )
-          );
+          matchingRecipesCopy = filterRecipesByAllTags(matchingRecipes);
+
           displayRecipes(matchingRecipesCopy); // Afficher les recettes filtrées
           displayTotalrecipes(matchingRecipesCopy); // Afficher le total des recettes filtrées
 
@@ -466,11 +463,8 @@ function handleAppliancesTags() {
           );
 
           // Re-filtrer les recettes en fonction de tous les tags restants
-          matchingRecipesCopy = matchingRecipes.filter((recipe) =>
-            selectedTags.appliances.every(
-              (tag) => recipe.appliance.toLowerCase() === tag.toLowerCase()
-            )
-          );
+          matchingRecipesCopy = filterRecipesByAllTags(matchingRecipes);
+
           displayRecipes(matchingRecipesCopy); // Afficher les recettes filtrées
           displayTotalrecipes(matchingRecipesCopy); // Afficher le total des recettes filtrées
 
