@@ -279,6 +279,26 @@ function updateFilterLists() {
   displayAppliancesList(appliancesListCopy);
 }
 
+function filterRecipesByAllTags(recipes) {
+  return recipes.filter(
+    (recipe) =>
+      selectedTags.ingredients.every((tag) =>
+        recipe.ingredients.some(
+          (ingredient) =>
+            ingredient.ingredient.toLowerCase() === tag.toLowerCase()
+        )
+      ) &&
+      selectedTags.appliances.every(
+        (tag) => recipe.appliance.toLowerCase() === tag.toLowerCase()
+      ) &&
+      selectedTags.ustensils.every((tag) =>
+        recipe.ustensils.some(
+          (ustensil) => ustensil.toLowerCase() === tag.toLowerCase()
+        )
+      )
+  );
+}
+
 // Gérer les tags des ingrédients
 function handleIngredientsTags() {
   const filterItems = document.querySelectorAll('.filter-ingredient');
@@ -321,14 +341,7 @@ function handleIngredientsTags() {
           );
 
           // Re-filtrer les recettes en fonction de tous les tags restants
-          matchingRecipesCopy = matchingRecipes.filter((recipe) =>
-            selectedTags.ingredients.every((tag) =>
-              recipe.ingredients.some(
-                (ingredient) =>
-                  ingredient.ingredient.toLowerCase() === tag.toLowerCase()
-              )
-            )
-          );
+          matchingRecipesCopy = filterRecipesByAllTags(matchingRecipes);
 
           displayRecipes(matchingRecipesCopy);
           displayTotalrecipes(matchingRecipesCopy);
@@ -388,11 +401,8 @@ function handleUstentilsTags() {
           );
 
           // Re-filtrer les recettes en fonction de tous les tags restants
-          matchingRecipesCopy = matchingRecipes.filter((recipe) =>
-            selectedTags.ustensils.every((tag) =>
-              recipe.ustensils.includes(tag.toLowerCase())
-            )
-          );
+          matchingRecipesCopy = filterRecipesByAllTags(matchingRecipes);
+
           displayRecipes(matchingRecipesCopy);
           displayTotalrecipes(matchingRecipesCopy);
 
@@ -446,11 +456,8 @@ function handleAppliancesTags() {
           );
 
           // Re-filtrer les recettes en fonction de tous les tags restants
-          matchingRecipesCopy = matchingRecipes.filter((recipe) =>
-            selectedTags.appliances.every(
-              (tag) => recipe.appliance.toLowerCase() === tag.toLowerCase()
-            )
-          );
+          matchingRecipesCopy = filterRecipesByAllTags(matchingRecipes);
+
           displayRecipes(matchingRecipesCopy);
           displayTotalrecipes(matchingRecipesCopy);
 
