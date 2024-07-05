@@ -288,6 +288,25 @@ function updateFilterLists() {
   displayUstensilsList(ustensilsListCopy); // Afficher la liste des ustensiles mise à jour
   displayAppliancesList(appliancesListCopy); // Afficher la liste des appareils mise à jour
 }
+function filterRecipesByAllTags(recipes) {
+  return recipes.filter(
+    (recipe) =>
+      selectedTags.ingredients.every((tag) =>
+        recipe.ingredients.some(
+          (ingredient) =>
+            ingredient.ingredient.toLowerCase() === tag.toLowerCase()
+        )
+      ) &&
+      selectedTags.appliances.every(
+        (tag) => recipe.appliance.toLowerCase() === tag.toLowerCase()
+      ) &&
+      selectedTags.ustensils.every((tag) =>
+        recipe.ustensils.some(
+          (ustensil) => ustensil.toLowerCase() === tag.toLowerCase()
+        )
+      )
+  );
+}
 
 // Gérer les tags des ingrédients
 function handleIngredientsTags() {
@@ -330,14 +349,7 @@ function handleIngredientsTags() {
           );
 
           // Re-filtrer les recettes en fonction de tous les tags restants
-          matchingRecipesCopy = matchingRecipes.filter((recipe) =>
-            selectedTags.ingredients.every((tag) =>
-              recipe.ingredients.some(
-                (ingredient) =>
-                  ingredient.ingredient.toLowerCase() === tag.toLowerCase()
-              )
-            )
-          );
+          matchingRecipesCopy = filterRecipesByAllTags(matchingRecipes);
 
           displayRecipes(matchingRecipesCopy); // Afficher les recettes filtrées
           displayTotalrecipes(matchingRecipesCopy); // Afficher le total des recettes filtrées
