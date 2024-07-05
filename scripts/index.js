@@ -290,6 +290,26 @@ function updateFilterLists() {
   displayUstensilsList(ustensilsListCopy);
   displayAppliancesList(appliancesListCopy);
 }
+function filterRecipesByAllTags(recipes) {
+  return recipes.filter(
+    (recipe) =>
+      selectedTags.ingredients.every((tag) =>
+        recipe.ingredients.some(
+          (ingredient) =>
+            ingredient.ingredient.toLowerCase() === tag.toLowerCase()
+        )
+      ) &&
+      selectedTags.appliances.every(
+        (tag) => recipe.appliance.toLowerCase() === tag.toLowerCase()
+      ) &&
+      selectedTags.ustensils.every((tag) =>
+        recipe.ustensils.some(
+          (ustensil) => ustensil.toLowerCase() === tag.toLowerCase()
+        )
+      )
+  );
+}
+
 // Gère les tags des ingrédients
 function handleIngredientsTags() {
   const filterItems = document.querySelectorAll('.filter-ingredient'); // Sélectionne tous les éléments de filtre des ingrédients
@@ -334,14 +354,7 @@ function handleIngredientsTags() {
           );
 
           // Re-filtrer les recettes en fonction de tous les tags restants
-          matchingRecipesCopy = matchingRecipes.filter((recipe) =>
-            selectedTags.ingredients.every((tag) =>
-              recipe.ingredients.some(
-                (ingredient) =>
-                  ingredient.ingredient.toLowerCase() === tag.toLowerCase()
-              )
-            )
-          );
+          matchingRecipesCopy = filterRecipesByAllTags(matchingRecipes);
 
           displayRecipes(matchingRecipesCopy); // Affiche les recettes filtrées
           displayTotalrecipes(matchingRecipesCopy); // Affiche le nombre total de recettes filtrées
@@ -402,11 +415,8 @@ function handleUstentilsTags() {
           );
 
           // Re-filtrer les recettes en fonction de tous les tags restants
-          matchingRecipesCopy = matchingRecipes.filter((recipe) =>
-            selectedTags.ustensils.every((tag) =>
-              recipe.ustensils.includes(tag.toLowerCase())
-            )
-          );
+          matchingRecipesCopy = filterRecipesByAllTags(matchingRecipes);
+
           displayRecipes(matchingRecipesCopy); // Affiche les recettes filtrées
           displayTotalrecipes(matchingRecipesCopy); // Affiche le nombre total de recettes filtrées
 
@@ -446,10 +456,8 @@ function handleAppliancesTags() {
         selectedTags.appliances.push(item.textContent); // Ajoute l'appareil à la liste des tags sélectionnés
 
         // Filtrer les recettes correspondant aux tags sélectionnés
-        matchingRecipesCopy = matchingRecipesCopy.filter(
-          (recipe) =>
-            recipe.appliance.toLowerCase() === item.textContent.toLowerCase()
-        );
+        matchingRecipesCopy = filterRecipesByAllTags(matchingRecipes);
+
         displayRecipes(matchingRecipesCopy); // Affiche les recettes filtrées
         displayTotalrecipes(matchingRecipesCopy); // Affiche le nombre total de recettes filtrées
 
